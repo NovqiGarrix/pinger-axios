@@ -1,8 +1,17 @@
 import puppeteer from 'puppeteer';
 import dotenv from 'dotenv';
 import axios from 'axios';
+import express from 'express';
+import cors from 'cors';
 
 dotenv.config();
+
+const PORT = process.env.PORT || 3001
+
+const app = express();
+
+app.use(cors());
+app.use(express.urlencoded({ extended: false }));
 
 async function visit(): Promise<void> {
 
@@ -43,6 +52,10 @@ async function ping(): Promise<void> {
         return
     }
 }
+
+app.get('/', (_req, res) => res.sendStatus(200));
+
+app.listen(PORT, () => console.log(`App Listening on PORT: ${PORT}`));
 
 (async function () {
 
