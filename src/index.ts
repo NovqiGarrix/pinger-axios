@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 
 async function ping(): Promise<void> {
-    const URL = process.env.API_URL!
+    const URL = process.env.API_BASE!
 
     try {
 
